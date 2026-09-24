@@ -29,4 +29,17 @@ public class Student {
 
     public void addCourse(Course c) { registeredCourses.add(c); }
     public void removeCourse(Course c) { registeredCourses.remove(c); }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return java.util.Objects.equals(studentId, student.studentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(studentId);
+    }
 }

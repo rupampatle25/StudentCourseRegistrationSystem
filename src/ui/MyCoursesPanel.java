@@ -48,6 +48,13 @@ public class MyCoursesPanel extends JPanel {
 
         JButton btnExport = new JButton("Export to Text File");
         btnExport.setFont(UIConstants.BOLD_FONT);
+        btnExport.setBackground(UIConstants.PRIMARY_BLUE);
+        btnExport.setForeground(Color.WHITE);
+        btnExport.setFocusPainted(false);
+        btnExport.setContentAreaFilled(false);
+        btnExport.setOpaque(true);
+        btnExport.setBorderPainted(false);
+        btnExport.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnExport.addActionListener(e -> exportToFile());
         bottomPanel.add(btnExport, BorderLayout.EAST);
 

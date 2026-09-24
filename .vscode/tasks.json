@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile Project",
+            "type": "shell",
+            "command": "javac -d bin (Get-ChildItem -Recurse -Filter *.java src).FullName",
+            "windows": {
+                "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"if (-not (Test-Path bin)) { New-Item -ItemType Directory -Path bin | Out-Null }; $files = (Get-ChildItem -Recurse -Filter *.java src).FullName; javac -encoding UTF-8 -d bin $files\""
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$javac"]
+        },
+        {
+            "label": "Run Application",
+            "type": "shell",
+            "command": "java -cp bin app.Main",
+            "windows": {
+                "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"java -cp bin app.Main\""
+            },
+            "dependsOn": "Compile Project",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "windows": {
+                "command": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"if (Test-Path bin) { Remove-Item -Recurse -Force bin }\""
+            },
+            "problemMatcher": []
+        }
+    ]
+}

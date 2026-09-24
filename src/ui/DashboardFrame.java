@@ -89,7 +89,7 @@ public class DashboardFrame extends JFrame {
         lblStatus = new JLabel(" Ready");
         statusBar.add(lblStatus, BorderLayout.WEST);
 
-        JLabel lblTime = new JLabel();
+        JLabel lblTime = new JLabel(new SimpleDateFormat("EEE, MMM d, yyyy HH:mm:ss").format(new Date()) + " ");
         new Timer(1000, e -> {
             lblTime.setText(new SimpleDateFormat("EEE, MMM d, yyyy HH:mm:ss").format(new Date()) + " ");
         }).start();
@@ -109,6 +109,7 @@ public class DashboardFrame extends JFrame {
         // FIX FOR WINDOWS RENDERING BUG
         btn.setContentAreaFilled(false);
         btn.setOpaque(true);
+
         btn.setBorderPainted(false);
 
         btn.setMaximumSize(new Dimension(200, 45));
@@ -163,6 +164,7 @@ public class DashboardFrame extends JFrame {
         am.put("register", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel, "REGISTER");
+                refreshPanels();
                 setStatus("Shortcut activated: Register Course");
             }
         });
@@ -170,15 +172,27 @@ public class DashboardFrame extends JFrame {
         am.put("drop", new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel, "REGISTER");
+                refreshPanels();
                 setStatus("Shortcut activated: Drop Course");
             }
         });
+    }
+
+    public void showCard(String cardName) {
+        cardLayout.show(cardPanel, cardName);
+        refreshPanels();
+        setStatus("Navigated to " + cardName);
+    }
+
+    public SearchPanel getSearchPanel() {
+        return searchPanel;
     }
 
     public void refreshPanels() {
         coursePanel.loadCourses();
         registrationPanel.loadTableData();
         myCoursesPanel.loadMyCourses();
+        searchPanel.performSearch();
     }
 
     public void setStatus(String msg) {

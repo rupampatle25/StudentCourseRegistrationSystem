@@ -32,6 +32,11 @@ public class SearchPanel extends JPanel {
         btnSearch.setFont(UIConstants.BOLD_FONT);
         btnSearch.setBackground(UIConstants.PRIMARY_BLUE);
         btnSearch.setForeground(Color.WHITE);
+        btnSearch.setFocusPainted(false);
+        btnSearch.setContentAreaFilled(false);
+        btnSearch.setOpaque(true);
+        btnSearch.setBorderPainted(false);
+        btnSearch.setCursor(new Cursor(Cursor.HAND_CURSOR));
         topPanel.add(btnSearch);
 
         add(topPanel, BorderLayout.NORTH);
@@ -47,9 +52,12 @@ public class SearchPanel extends JPanel {
         // Action Listeners
         btnSearch.addActionListener(e -> performSearch());
         txtSearch.addActionListener(e -> performSearch()); // Allows pressing Enter to search
+
+        // Load all courses initially
+        performSearch();
     }
 
-    private void performSearch() {
+    public void performSearch() {
         tableModel.setRowCount(0);
         String query = txtSearch.getText();
         List<Course> results = courseService.searchCourse(query);
@@ -62,5 +70,10 @@ public class SearchPanel extends JPanel {
                     c.getAvailableSeats()
             });
         }
+    }
+
+    public void setSearchQuery(String query) {
+        txtSearch.setText(query);
+        performSearch();
     }
 }

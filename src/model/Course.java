@@ -44,4 +44,17 @@ public class Course {
     public void incrementSeats() {
         if (availableSeats < capacity) availableSeats++;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return java.util.Objects.equals(courseCode, course.courseCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(courseCode);
+    }
 }

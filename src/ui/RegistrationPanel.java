@@ -48,10 +48,20 @@ public class RegistrationPanel extends JPanel {
         btnRegister.setFont(UIConstants.BOLD_FONT);
         btnRegister.setBackground(UIConstants.PRIMARY_BLUE);
         btnRegister.setForeground(Color.WHITE);
+        btnRegister.setFocusPainted(false);
+        btnRegister.setContentAreaFilled(false);
+        btnRegister.setOpaque(true);
+        btnRegister.setBorderPainted(false);
+        btnRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnDrop.setFont(UIConstants.BOLD_FONT);
         btnDrop.setBackground(new Color(220, 53, 69)); // Red color
         btnDrop.setForeground(Color.WHITE);
+        btnDrop.setFocusPainted(false);
+        btnDrop.setContentAreaFilled(false);
+        btnDrop.setOpaque(true);
+        btnDrop.setBorderPainted(false);
+        btnDrop.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnPanel.add(btnRegister);
         btnPanel.add(btnDrop);
